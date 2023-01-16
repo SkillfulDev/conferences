@@ -110,25 +110,24 @@
     </div>
 
     <div class="container-right">
-        <%--        <c:if test="${sessionScope.role == 'MODERATOR'}">--%>
-        <c:if test="${sessionScope.role == 'MODERATOR'}">
+        <c:if test="${sessionScope.get('user').role == 'MODERATOR'}">
             <h2>Admin Panel</h2>
-            <form action="<%= request.getContextPath() %>/eventRegistration">
+            <form action="<%= request.getContextPath() %>/pages/event/add-event">
                 <button>Add event</button>
             </form>
-            <form action="<%= request.getContextPath() %>/edit">
+            <form action="<%= request.getContextPath() %>/pages/event/show-events">
                 <button>Edit Event</button>
             </form>
             <form action="<%= request.getContextPath() %>/request">
                 <button>Request List</button>
             </form>
         </c:if>
-        <c:if test="${sessionScope.role == 'SPEAKER'}">
+        <c:if test="${sessionScope.get('user').role == 'SPEAKER'}">
             <form action="<%= request.getContextPath() %>/showSpeakerTopic/${user.id}">
                 <button>Show my topic</button>
             </form>
         </c:if>
-        <c:if test="${sessionScope.role == 'USER'}">
+        <c:if test="${sessionScope.get('user').role == 'USER'}">
             <form action="<%= request.getContextPath() %>/eventRegistration">
                 <button>Show my Event</button>
             </form>

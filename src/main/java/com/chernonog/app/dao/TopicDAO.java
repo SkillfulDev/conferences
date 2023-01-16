@@ -7,4 +7,6 @@ import java.util.List;
 public interface TopicDAO {
 
     List<Topic> getAllEventTopics(int eventId);
+
+    void insertTopics(List<Topic> topics, int eventId);
 }

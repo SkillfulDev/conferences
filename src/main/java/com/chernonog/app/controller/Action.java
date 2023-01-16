@@ -9,6 +9,9 @@ public interface Action {
     String LOGIN = "login";
     String REGISTER = "register";
     String LOGOUT = "logout";
+    String ERROR = "error";
+    String ADD_EVENT = "event/add-event";
+    String SHOW_ALL_EVENTS = "event/show-events";
 
     String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }

@@ -1,15 +1,11 @@
 package com.chernonog.app.controller.actions.login;
 
-import com.chernonog.app.config.DataSource;
 import com.chernonog.app.controller.Action;
 import com.chernonog.app.model.User;
 import com.chernonog.app.service.UserService;
 import com.chernonog.app.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class LoginPostAction implements Action {
 
@@ -21,7 +17,11 @@ public class LoginPostAction implements Action {
         String password = req.getParameter("password");
 
         User user = userService.getUserByLoginAndPassword(login, password);
-        req.getSession().setAttribute("user", user);
+        if (user != null) {
+            req.getSession().setAttribute("user", user);
+        } else {
+            return req.getContextPath() + "/pages/error";
+        }
 
         System.out.println("Authorized user: " + req.getSession().getAttribute("user"));
 

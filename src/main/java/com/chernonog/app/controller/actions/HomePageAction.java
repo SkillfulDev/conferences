@@ -1,7 +1,6 @@
 package com.chernonog.app.controller.actions;
 
 import com.chernonog.app.controller.Action;
-import com.chernonog.app.dao.EventDAO;
 import com.chernonog.app.model.Event;
 import com.chernonog.app.service.EventService;
 import com.chernonog.app.service.impl.EventServiceImpl;

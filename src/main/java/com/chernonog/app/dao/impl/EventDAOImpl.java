@@ -6,6 +6,7 @@ import com.chernonog.app.dao.EventDAO;
 import com.chernonog.app.dao.sql.SQLEvent;
 import com.chernonog.app.model.Event;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,5 +37,26 @@ public class EventDAOImpl implements EventDAO {
             throw new RuntimeException(e);
         }
         return listEvent;
+    }
+
+    @Override
+    public void insertEvent(Event event) {
+        try (PreparedStatement preparedStatement = DataSource.connection
+                .prepareStatement(SQLEvent.INSERT_EVENT.QUERY, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, event.getName());
+            preparedStatement.setString(2, event.getDescribe());
+            preparedStatement.setString(3, event.getDate());
+            preparedStatement.setString(4, event.getPlace());
+
+            preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                DAOFactory.getTopicDAO().insertTopics(event.getTopics(), resultSet.getInt(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

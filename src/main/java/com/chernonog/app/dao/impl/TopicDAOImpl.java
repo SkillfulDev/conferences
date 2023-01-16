@@ -2,7 +2,6 @@ package com.chernonog.app.dao.impl;
 
 import com.chernonog.app.config.DataSource;
 import com.chernonog.app.dao.TopicDAO;
-import com.chernonog.app.dao.sql.SQLEvent;
 import com.chernonog.app.dao.sql.SQLTopic;
 import com.chernonog.app.model.Topic;
 
@@ -34,5 +33,20 @@ public class TopicDAOImpl implements TopicDAO {
         }
 
         return topics;
+    }
+
+    @Override
+    public void insertTopics(List<Topic> topics, int eventId) {
+        for (Topic topic : topics) {
+            try (PreparedStatement preparedStatement = DataSource.connection
+                    .prepareStatement(SQLTopic.INSERT_TOPIC.QUERY)) {
+                preparedStatement.setString(1, topic.getName());
+                preparedStatement.setInt(2, eventId);
+
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

@@ -72,6 +72,8 @@ public class UserDAOImpl implements UserDAO {
             user.setRole(Role.valueOf(resultSet.getString("role")));
             user.setFirstName(resultSet.getString("first_name"));
             user.setSecondName(resultSet.getString("second_name"));
+        } else {
+            return null;
         }
 
         return user;
