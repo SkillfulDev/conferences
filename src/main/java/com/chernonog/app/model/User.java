@@ -23,8 +23,6 @@ public class User {
 
     private Role role;
 
-    private int permission;
-
     private List<Topic> topics = new ArrayList<>();
 
     private Topic topic;

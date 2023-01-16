@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="/page/login" method="post">
+<form action="/pages/login" method="post">
     <div class="container">
         <h1 class="login-h1">Sign in</h1>
 

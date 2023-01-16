@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/conference/src/main/webapp/css/style.css">
+</head>
+
+<body>
+    <!-- <form action="<%= request.getContextPath() %>/edit/${event.id}" method="post"> -->
+
+    <form>
+        <div class="container">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="${event.name}" /><br><br>
+                <label for="name">Describe:</label>
+                <input type="text" id="describe" name="describe" value="${event.describe}" /><br><br>
+                <label for="name">Date:</label>
+                <input type="datetime-local" id="date" name="date" value="${event.date}" /><br><br>
+                <label for="name">Place:</label>
+                <input type="text" id="place" name="place" value="${event.place}" /><br><br>
+                <label>Topics:</label>
+                <br>
+                <input type="text" id="topic" name="topic" value="${event.topics}" /><br><br>
+                <!-- <c:forEach items="${event.topics}" var="topic">
+                <input type="text" name="topic" value="${topic.name}"/><br><br>
+            </c:forEach> -->
+                <input type="submit" class="registerbtn" value="Send">
+            </div>
+            <form>
+                <input class="back-btn" type="button" value="Back" onclick="history.back()">
+            </form>
+        </div>
+        
+    </form>
+
+</body>
+
+</html>

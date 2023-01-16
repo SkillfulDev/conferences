@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/conference/src/main/webapp/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <!-- <form action="<%= request.getContextPath() %>/eventRegistration" method="post"> -->
+        <form action="#">
+    <div class="container">
+        <div>
+            <p>Event name</p>
+            <input name="name" type="text">
+
+            <div>
+                <p>Event Describe</p>
+                <textarea name="descr" cols="50" rows="10"></textarea>
+            </div>
+
+            <p>Topic</p>
+            <div class="topic-container">
+
+                <div id="topic-main">
+                    <input name="topic" type="text">
+                </div>
+
+
+                <p>Add new topic</p>
+                <button id="topic-btn" class="topic-btn-add">+</button>
+            </div>
+
+            <div>
+                <button type="submit" class="registerbtn">Submit</button>
+            </div>
+        </div>
+        <form>
+            <input class="back-btn" type="button" value="Back" onclick="history.back()">
+        </form>
+    </div>
+</form>
+
+    <script>
+        const button = document.getElementById("topic-btn");
+        const input_box = document.getElementById("topic-main");
+
+        button.addEventListener(
+            "click",
+            () => {
+                const input = document.createElement("input");
+                input.name = "topic";
+                input.type = "text";
+                addNewTopicField(input);
+            },
+            false
+        );
+
+        function addNewTopicField(input) {
+            // console.log(button);
+            // console.log(input_box);
+            input_box.append(input);
+        }
+
+
+    </script>
+
+
+
+    <!-- <script>
+        // Add event listener to table
+        const btn = document.getElementById("topic-btn");
+        btn.addEventListener("click", addNewTopicField, false);
+
+        function addNewTopicField() {
+            let button = document.getElementById('topic-btn');
+            let topic_container = document.getElementById('topic-container');
+            let topic_field = document.getElementsByName('topic')
+
+            let input = document.createElement("input");
+        
+            input.name = "topic";
+            input.type = "text";
+
+            topic_container.style.flexDirection = 'column';
+            topic_container.style.gap = '5px'
+            topic_field.style.width = '70%'
+
+            button.before(input);
+
+        }
+    </script> -->
+
+
+
+</body>
+
+</html>

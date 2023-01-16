@@ -1,8 +1,11 @@
 package com.chernonog.app.controller;
 
 import com.chernonog.app.controller.actions.HomePageAction;
-import com.chernonog.app.controller.actions.LoginGetAction;
-import com.chernonog.app.controller.actions.LoginPostAction;
+import com.chernonog.app.controller.actions.LogoutAction;
+import com.chernonog.app.controller.actions.login.LoginGetAction;
+import com.chernonog.app.controller.actions.login.LoginPostAction;
+import com.chernonog.app.controller.actions.register.RegisterGetAction;
+import com.chernonog.app.controller.actions.register.RegisterPostAction;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
@@ -21,6 +24,9 @@ public class ActionFactory {
         actions.put(GET + HOME, new HomePageAction());
         actions.put(GET + LOGIN, new LoginGetAction());
         actions.put(POST + LOGIN, new LoginPostAction());
+        actions.put(GET + REGISTER, new RegisterGetAction());
+        actions.put(POST + REGISTER, new RegisterPostAction());
+        actions.put(POST + LOGOUT, new LogoutAction());
     }
 
     public static Action getAction(HttpServletRequest req) {

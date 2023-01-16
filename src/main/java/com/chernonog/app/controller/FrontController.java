@@ -9,7 +9,7 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 
-@WebServlet("/page/*")
+@WebServlet("/pages/*")
 public class FrontController extends HttpServlet {
 
     private static final String PATH = "/WEB-INF/jsp/";
@@ -17,7 +17,6 @@ public class FrontController extends HttpServlet {
     @SneakyThrows
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getMethod() + req.getPathInfo());
         Action action = ActionFactory.getAction(req);
         String view = action.execute(req, resp);
 
