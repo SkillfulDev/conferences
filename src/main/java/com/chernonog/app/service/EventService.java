@@ -10,4 +10,6 @@ public interface EventService {
     List<Event> getAllEvent();
 
     void addEvent(HttpServletRequest req);
+
+    Event getEventByID(int eventID);
 }

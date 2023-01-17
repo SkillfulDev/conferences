@@ -12,6 +12,7 @@ public interface Action {
     String ERROR = "error";
     String ADD_EVENT = "event/add-event";
     String SHOW_ALL_EVENTS = "event/show-events";
+    String EDIT_EVENT = "event/edit-event";
 
     String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }

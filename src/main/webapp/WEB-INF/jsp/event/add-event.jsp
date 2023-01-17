@@ -53,7 +53,9 @@
     </form>
 
 </div>
-<script src="../js/topic.js"></script>
+<script src="<c:url value="/js/topic.js"/>">
+
+</script>
 </body>
 
 </html>

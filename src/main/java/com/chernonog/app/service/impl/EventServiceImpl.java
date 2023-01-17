@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventServiceImpl implements EventService {
+    @Override
+    public Event getEventByID(int eventID) {
+        return null;
+    }
 
     private final EventDAO eventDAO = DAOFactory.getEventDAO();
 
@@ -43,4 +47,5 @@ public class EventServiceImpl implements EventService {
 
         eventDAO.insertEvent(event);
     }
+
 }

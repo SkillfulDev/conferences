@@ -8,4 +8,6 @@ public interface EventDAO {
     List<Event> getAllEvent();
 
     void insertEvent(Event event);
+
+    Event getEventByID(int eventID);
 }

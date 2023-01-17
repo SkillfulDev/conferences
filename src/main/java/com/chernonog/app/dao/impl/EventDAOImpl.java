@@ -59,4 +59,9 @@ public class EventDAOImpl implements EventDAO {
         }
 
     }
+
+    @Override
+    public Event getEventByID(int eventID) {
+        return null;
+    }
 }

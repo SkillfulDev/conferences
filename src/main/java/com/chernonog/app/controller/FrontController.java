@@ -19,6 +19,7 @@ public class FrontController extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Action action = ActionFactory.getAction(req);
         String view = action.execute(req, resp);
+        System.out.println(view);
 
         if (view.equals(req.getPathInfo().substring(1))) {
             req.getRequestDispatcher(PATH + view + ".jsp").forward(req, resp);
