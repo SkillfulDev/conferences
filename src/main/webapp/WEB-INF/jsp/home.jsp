@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: y.chernonog
-  Date: 01.12.2022
-  Time: 14:22
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -135,21 +128,12 @@
     </div>
 </div>
 
-
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>--%>
-<%--<script type="text/javascript" src="../js/cssanimation-gsap.js"></script>--%>
-<%--<script type="module" src="../js/lang.js"></script>--%>
-<%--<script type="module" src="../js/changeLang.js"></script>--%>
-
 <script>
 
     window.addEventListener('load', function () {
         const event_parent = document.querySelectorAll('.container-event .container-article');
         const container_articled = document.getElementsByClassName('.container-event >.container-article');
-        // console.log(container_articled)
-        // const paginatParent = document.querySelectorAll('.side-navigation .side-navigation__item');
 
-        // parent.addEventListener('change', rebuildPagination)
 
         const paginat_parent = document.getElementById('myNode');
 

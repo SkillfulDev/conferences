@@ -38,15 +38,35 @@ public class TopicDAOImpl implements TopicDAO {
     @Override
     public void insertTopics(List<Topic> topics, int eventId) {
         for (Topic topic : topics) {
+            insertTopic(topic, eventId);
+        }
+    }
+
+    @Override
+    public void updateTopics(List<Topic> topics) {
+        for (Topic topic : topics) {
             try (PreparedStatement preparedStatement = DataSource.connection
-                    .prepareStatement(SQLTopic.INSERT_TOPIC.QUERY)) {
+                    .prepareStatement(SQLTopic.UPDATE_TOPIC.QUERY)) {
                 preparedStatement.setString(1, topic.getName());
-                preparedStatement.setInt(2, eventId);
+                preparedStatement.setInt(2, topic.getId());
 
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    @Override
+    public void insertTopic(Topic topic, int eventId) {
+        try (PreparedStatement preparedStatement = DataSource.connection
+                .prepareStatement(SQLTopic.INSERT_TOPIC.QUERY)) {
+            preparedStatement.setString(1, topic.getName());
+            preparedStatement.setInt(2, eventId);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

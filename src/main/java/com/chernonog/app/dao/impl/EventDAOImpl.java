@@ -21,16 +21,7 @@ public class EventDAOImpl implements EventDAO {
         try (Statement statement = DataSource.connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQLEvent.SELECT_ALL_EVENTS.QUERY)) {
             while (resultSet.next()) {
-                Event event = new Event();
-                event.setId(resultSet.getInt("id"));
-                event.setPlace(resultSet.getString("place"));
-                event.setName(resultSet.getString("name"));
-                event.setDescribe(resultSet.getString("descr"));
-
-                String date = new SimpleDateFormat("yyyy-MM-dd HH:mm")
-                        .format(resultSet.getTimestamp("date"));
-                event.setDate(date);
-                event.setTopics(DAOFactory.getTopicDAO().getAllEventTopics(resultSet.getInt("id")));
+                Event event = extractEvent(resultSet);
                 listEvent.add(event);
             }
         } catch (SQLException e) {
@@ -38,6 +29,7 @@ public class EventDAOImpl implements EventDAO {
         }
         return listEvent;
     }
+
 
     @Override
     public void insertEvent(Event event) {
@@ -62,6 +54,52 @@ public class EventDAOImpl implements EventDAO {
 
     @Override
     public Event getEventByID(int eventID) {
-        return null;
+        Event event = new Event();
+
+        try (PreparedStatement preparedStatement = DataSource.connection
+                .prepareStatement(SQLEvent.GET_EVENT_BY_ID.QUERY)) {
+            preparedStatement.setInt(1, eventID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                event = extractEvent(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return event;
+    }
+
+    @Override
+    public void updateEvent(Event event) {
+        try (PreparedStatement statement = DataSource.connection.prepareStatement(SQLEvent.UPDATE_EVENT.QUERY)) {
+            statement.setString(1, event.getName());
+            statement.setString(2, event.getDescribe());
+            statement.setString(3, event.getDate());
+            statement.setString(4, event.getPlace());
+            statement.setInt(5, event.getId());
+            DAOFactory.getTopicDAO().updateTopics(event.getTopics());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private Event extractEvent(ResultSet resultSet) throws SQLException {
+        Event event = new Event();
+        event.setId(resultSet.getInt("id"));
+        event.setPlace(resultSet.getString("place"));
+        event.setName(resultSet.getString("name"));
+        event.setDescribe(resultSet.getString("descr"));
+
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm")
+                .format(resultSet.getTimestamp("date"));
+        event.setDate(date);
+        event.setTopics(DAOFactory.getTopicDAO().getAllEventTopics(resultSet.getInt("id")));
+        return event;
     }
 }

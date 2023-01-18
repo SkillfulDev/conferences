@@ -8,15 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <title>Title</title>
 </head>
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>--%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <body>
-<jsp:useBean id="event" scope="request" type="com.conference.model.Event"/>
 
-<form action="<%= request.getContextPath() %>pages/edit/${event.id}" method="post">
+<form action="<%= request.getContextPath() %>/pages/event/edit-event?eventID=${event.id}" method="post">
     <div class="container">
         <div>
             <label for="name">Name:</label>
@@ -53,7 +52,7 @@
 </form>
 
 
-<script src="../js/topic.js"></script>
+<script src="${pageContext.request.contextPath}/js/topic.js"></script>
 
 </body>
 </html>

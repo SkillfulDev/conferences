@@ -1,22 +1,19 @@
 package com.chernonog.app.controller.actions.event;
 
 import com.chernonog.app.controller.Action;
-import com.chernonog.app.model.Event;
 import com.chernonog.app.service.EventService;
 import com.chernonog.app.service.impl.EventServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class EditEventGetAction implements Action {
+public class EditEventPostAction implements Action {
 
     private EventService eventService = new EventServiceImpl();
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        int eventID = Integer.parseInt(req.getParameter("eventID"));
-        Event event = eventService.getEventByID(eventID);
+        eventService.updateEvent(req);
 
-        req.setAttribute("event", event);
-        return EDIT_EVENT;
+        return req.getContextPath() + "/pages/event/show-events";
     }
 }

@@ -3,10 +3,7 @@ package com.chernonog.app.controller;
 import com.chernonog.app.controller.actions.ErrorPageAction;
 import com.chernonog.app.controller.actions.HomePageAction;
 import com.chernonog.app.controller.actions.LogoutAction;
-import com.chernonog.app.controller.actions.event.AddEventGetAction;
-import com.chernonog.app.controller.actions.event.AddEventPostAction;
-import com.chernonog.app.controller.actions.event.EditEventGetAction;
-import com.chernonog.app.controller.actions.event.ShowAllEventsGetAction;
+import com.chernonog.app.controller.actions.event.*;
 import com.chernonog.app.controller.actions.login.LoginGetAction;
 import com.chernonog.app.controller.actions.login.LoginPostAction;
 import com.chernonog.app.controller.actions.register.RegisterGetAction;
@@ -37,6 +34,7 @@ public class ActionFactory {
         actions.put(POST + ADD_EVENT, new AddEventPostAction());
         actions.put(GET + SHOW_ALL_EVENTS, new ShowAllEventsGetAction());
         actions.put(GET + EDIT_EVENT, new EditEventGetAction());
+        actions.put(POST + EDIT_EVENT, new EditEventPostAction());
     }
 
     public static Action getAction(HttpServletRequest req) {

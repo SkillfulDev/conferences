@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventServiceImpl implements EventService {
-    @Override
-    public Event getEventByID(int eventID) {
-        return null;
-    }
 
     private final EventDAO eventDAO = DAOFactory.getEventDAO();
 
@@ -46,6 +42,41 @@ public class EventServiceImpl implements EventService {
         event.setTopics(topics);
 
         eventDAO.insertEvent(event);
+    }
+
+    @Override
+    public Event getEventByID(int eventID) {
+        return eventDAO.getEventByID(eventID);
+    }
+
+    @Override
+    public void updateEvent(HttpServletRequest req) {
+        String[] topics = req.getParameterValues("topic");
+
+        Event event = getEventByID(Integer.parseInt(req.getParameter("eventID")));
+        event.setName(req.getParameter("name"));
+        event.setDescribe(req.getParameter("describe"));
+        event.setDate(req.getParameter("date"));
+        event.setPlace(req.getParameter("place"));
+
+        List<Topic> topicList = event.getTopics();
+
+        for (int i = 0; i < topics.length; i++) {
+            if (i < topicList.size()) {
+                Topic topic = topicList.get(i);
+                topic.setName(topics[i]);
+                topicList.set(i, topic);
+            } else {
+                Topic topic = new Topic();
+                topic.setName(topics[i]);
+                topicList.add(topic);
+                DAOFactory.getTopicDAO().insertTopic(topic, event.getId());
+            }
+        }
+
+        event.setTopics(topicList);
+
+        eventDAO.updateEvent(event);
     }
 
 }

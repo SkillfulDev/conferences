@@ -12,4 +12,6 @@ public interface EventService {
     void addEvent(HttpServletRequest req);
 
     Event getEventByID(int eventID);
+
+    void updateEvent(HttpServletRequest req);
 }

@@ -10,4 +10,6 @@ public interface EventDAO {
     void insertEvent(Event event);
 
     Event getEventByID(int eventID);
+
+    void updateEvent(Event event);
 }
