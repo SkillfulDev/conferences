@@ -1,4 +1,4 @@
-package com.chernonog.app.controller.actions.event;
+package com.chernonog.app.controller.actions.event.moderator;
 
 import com.chernonog.app.controller.Action;
 import jakarta.servlet.http.HttpServletRequest;

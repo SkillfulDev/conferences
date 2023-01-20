@@ -60,6 +60,7 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+
     @SneakyThrows
     private User extractUser(ResultSet resultSet) {
         User user = new User();
@@ -77,5 +78,20 @@ public class UserDAOImpl implements UserDAO {
         }
 
         return user;
+    }
+
+    @Override
+    public void updateUser(User user) {
+        try (PreparedStatement statement = DataSource.connection.prepareStatement(SQLUser.UPDATE_USER.QUERY)) {
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, String.valueOf(user.getRole()));
+            statement.setString(4, String.valueOf(user.getFirstName()));
+            statement.setString(5, String.valueOf(user.getSecondName()));
+            statement.setInt(6, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

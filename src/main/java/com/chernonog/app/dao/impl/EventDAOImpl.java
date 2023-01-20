@@ -16,10 +16,10 @@ import java.util.List;
 
 public class EventDAOImpl implements EventDAO {
     @Override
-    public List<Event> getAllEvent() {
+    public List<Event> getAllEvent(SQLEvent sortType) {
         List<Event> listEvent = new ArrayList<>();
         try (Statement statement = DataSource.connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(SQLEvent.SELECT_ALL_EVENTS.QUERY)) {
+             ResultSet resultSet = statement.executeQuery(sortType.QUERY)) {
             while (resultSet.next()) {
                 Event event = extractEvent(resultSet);
                 listEvent.add(event);
@@ -81,6 +81,19 @@ public class EventDAOImpl implements EventDAO {
             statement.setString(4, event.getPlace());
             statement.setInt(5, event.getId());
             DAOFactory.getTopicDAO().updateTopics(event.getTopics());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void joinUserToEvent(int userId, int eventId) {
+        try (PreparedStatement statement = DataSource.connection
+                .prepareStatement(SQLEvent.JOIN_USER_TO_EVENT.QUERY)) {
+            statement.setInt(1, eventId);
+            statement.setInt(2, userId);
 
             statement.executeUpdate();
         } catch (SQLException e) {

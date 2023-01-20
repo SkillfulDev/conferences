@@ -10,4 +10,6 @@ public interface UserService {
     User getUserByLoginAndPassword(String login, String password);
 
     void saveUser(HttpServletRequest req);
+
+    void  updateUser (HttpServletRequest req);
 }

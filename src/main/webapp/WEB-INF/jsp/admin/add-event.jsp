@@ -16,7 +16,7 @@
 <body>
 <div class="container">
 
-    <form action="/pages/event/add-event" method="post">
+    <form action="/pages/admin/add-event" method="post">
 
         <div>
             <p>Event name</p>

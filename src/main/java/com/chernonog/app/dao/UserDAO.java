@@ -9,4 +9,6 @@ public interface UserDAO {
     User getUser(String login, String password);
 
     void insertUser(User user);
+
+    void updateUser(User user);
 }

@@ -37,4 +37,26 @@ public class UserServiceImpl implements UserService {
 
         userDAO.insertUser(user);
     }
+
+    @Override
+    public void updateUser(HttpServletRequest req) {
+        String login = req.getParameter("login");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String first_name= req.getParameter("first_name");
+        String second_name = req.getParameter("second_name");
+
+
+
+        User user = (User) req.getSession().getAttribute("user");
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setFirstName(first_name);
+        user.setSecondName(second_name);
+
+        userDAO.updateUser(user);
+    }
+
+
 }

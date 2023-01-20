@@ -12,6 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-<p><img src="<c:url value="/lol.jpg"/>"></p>
+<h3>ACCESS DENIED</h3>
 </body>
 </html>

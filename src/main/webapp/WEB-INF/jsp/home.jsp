@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
 
     <title>Account</title>
 </head>
@@ -54,6 +55,12 @@
 
     <div class="container-center scroll">
 
+        <div class="sort">
+            <a href="/pages/home">All events</a>
+            <a href="/pages/home?sort=future">Future events</a>
+            <a href="/pages/home?sort=past">Past events</a>
+        </div>
+
         <div class="side-navigation">
             <ul id="myNode" class="side-navigation__content">
 
@@ -87,14 +94,18 @@
                     </div>
 
                     <div class="conference-footer">
-                        <c:if test="${sessionScope.role == 'USER'}">
+                        <c:if test="${sessionScope.get('user').role == 'USER'}">
                             <form action="<%= request.getContextPath() %>/speaker/${event.id}">
 
                                 <button id="btn-speaker">Join as a Speaker</button>
 
                             </form>
                         </c:if>
-                        <button id="btn-join">Join</button>
+
+                        <form action="<%= request.getContextPath() %>/pages/join" method="post">
+                            <input type="hidden" name="eventId" value="${event.id}">
+                            <button id="btn-join">Join</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -105,10 +116,10 @@
     <div class="container-right">
         <c:if test="${sessionScope.get('user').role == 'MODERATOR'}">
             <h2>Admin Panel</h2>
-            <form action="<%= request.getContextPath() %>/pages/event/add-event">
+            <form action="<%= request.getContextPath() %>/pages/admin/add-event">
                 <button>Add event</button>
             </form>
-            <form action="<%= request.getContextPath() %>/pages/event/show-events">
+            <form action="<%= request.getContextPath() %>/pages/admin/show-events">
                 <button>Edit Event</button>
             </form>
             <form action="<%= request.getContextPath() %>/request">
@@ -163,6 +174,6 @@
 
 </body>
 
-<script type="module" src="../js/lang.js"></script>
-<script type="module" src="../js/changeLang.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/js/lang.js"></script>
+<%--<script type="module" src="${pageContext.request.contextPath}/js/changeLang.js"></script>--%>
 </html>

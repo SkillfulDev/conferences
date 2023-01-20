@@ -15,7 +15,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <body>
 
-<form action="<%= request.getContextPath() %>/pages/event/edit-event?eventID=${event.id}" method="post">
+<form action="<%= request.getContextPath() %>/pages/admin/edit-event?eventID=${event.id}" method="post">
     <div class="container">
         <div>
             <label for="name">Name:</label>

@@ -2,6 +2,7 @@ package com.chernonog.app.service.impl;
 
 import com.chernonog.app.dao.DAOFactory;
 import com.chernonog.app.dao.EventDAO;
+import com.chernonog.app.dao.sql.SQLEvent;
 import com.chernonog.app.model.Event;
 import com.chernonog.app.model.Topic;
 import com.chernonog.app.service.EventService;
@@ -15,8 +16,8 @@ public class EventServiceImpl implements EventService {
     private final EventDAO eventDAO = DAOFactory.getEventDAO();
 
     @Override
-    public List<Event> getAllEvent() {
-        return eventDAO.getAllEvent();
+    public List<Event> getAllEvent(SQLEvent sortType) {
+        return eventDAO.getAllEvent(sortType);
     }
 
     @Override
@@ -77,6 +78,11 @@ public class EventServiceImpl implements EventService {
         event.setTopics(topicList);
 
         eventDAO.updateEvent(event);
+    }
+
+    @Override
+    public void joinUserToEvent(int userId, int eventId) {
+        eventDAO.joinUserToEvent(userId, eventId);
     }
 
 }
