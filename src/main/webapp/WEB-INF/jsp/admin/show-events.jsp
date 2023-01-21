@@ -26,17 +26,21 @@
                 <td>${event.date}</td>
                 <td>${event.place}</td>
                 <td>
-<%--                    <a href="<c:url value="/pages/event/edit-event?eventID=${event.id}"/>">Edit</a>--%>
+                        <%--                    <a href="<c:url value="/pages/event/edit-event?eventID=${event.id}"/>">Edit</a>--%>
                     <form action="<c:url value="/pages/admin/edit-event"/>" method="get">
                         <input type="hidden" name="eventID" value="${event.id}">
                         <input type="submit" value="Edit">
+                    </form>
+                    <form action="<c:url value="/pages/admin/delete"/>" method="post">
+                        <input type="hidden" name="eventID" value="${event.id}">
+                        <input type="submit" value="Delete">
                     </form>
                 </td>
             </tr>
         </c:forEach>
     </table>
     <form>
-        <input class="back-btn"  type="button" value="Back" onclick="history.back()">
+        <input class="back-btn" type="button" value="Back" onclick="history.back()">
     </form>
 </div>
 

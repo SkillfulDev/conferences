@@ -15,4 +15,6 @@ public interface EventDAO {
     void updateEvent(Event event);
 
     void joinUserToEvent(int userId, int eventId);
+
+    void deleteEvent(int eventID);
 }

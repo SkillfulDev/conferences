@@ -101,6 +101,22 @@ public class EventDAOImpl implements EventDAO {
         }
     }
 
+    @Override
+    public void deleteEvent(int eventID) {
+        try (PreparedStatement statement = DataSource.connection.
+                prepareStatement(SQLEvent.DELETE_EVENT_BY_ID.QUERY)) {
+
+            statement.setInt(1,eventID);
+            statement.executeUpdate();
+
+//            statement.setInt(1, event.getId());
+//            statement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private Event extractEvent(ResultSet resultSet) throws SQLException {
         Event event = new Event();

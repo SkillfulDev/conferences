@@ -17,4 +17,6 @@ public interface EventService {
     void updateEvent(HttpServletRequest req);
 
     void joinUserToEvent(int userId, int eventId);
+
+    void deleteEvent(int eventID);
 }

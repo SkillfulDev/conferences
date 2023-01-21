@@ -7,7 +7,9 @@ public enum SQLEvent {
     UPDATE_EVENT("update event set name=?, descr=?, date=?, place=? where id=?"),
     JOIN_USER_TO_EVENT("insert into event_has_user (event_id, user_id) values ((?), (?))"),
     SELECT_ALL_FUTURE_EVENTS("select * from event where date >= curdate()"),
-    SELECT_ALL_PAST_EVENTS("select * from event where date <= curdate()");
+    SELECT_ALL_PAST_EVENTS("select * from event where date <= curdate()"),
+
+    DELETE_EVENT_BY_ID("delete from event where id =?");
 
     public final String QUERY;
 

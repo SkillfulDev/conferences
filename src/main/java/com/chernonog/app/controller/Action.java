@@ -15,6 +15,8 @@ public interface Action {
     String EDIT_EVENT = "admin/edit-event";
     String JOIN_USER_TO_EVENT = "join";
     String EDIT_USER = "settings";
+    String DELETE_EVENT = "admin/delete";
+
 
     String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }

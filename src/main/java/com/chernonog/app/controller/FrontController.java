@@ -17,7 +17,6 @@ public class FrontController extends HttpServlet {
     @SneakyThrows
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getMethod());
         Action action = ActionFactory.getAction(req);
         String view = action.execute(req, resp);
 

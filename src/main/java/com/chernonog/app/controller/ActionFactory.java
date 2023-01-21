@@ -41,6 +41,7 @@ public class ActionFactory {
         actions.put(POST + JOIN_USER_TO_EVENT, new JoinUserToEventAction());
         actions.put(GET + EDIT_USER, new EditUserGetAction());
         actions.put(POST + EDIT_USER, new EditUserPostAction());
+        actions.put(POST + DELETE_EVENT, new DeleteEventPostAction());
     }
 
     public static Action getAction(HttpServletRequest req) {

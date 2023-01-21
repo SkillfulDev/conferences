@@ -85,4 +85,10 @@ public class EventServiceImpl implements EventService {
         eventDAO.joinUserToEvent(userId, eventId);
     }
 
+
+    @Override
+    public void deleteEvent(int eventID) {
+        eventDAO.deleteEvent(eventID);
+    }
+
 }
